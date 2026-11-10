@@ -56,6 +56,49 @@ body {
   padding: 0 27px;
 }
 
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 28px auto 0;
+  padding: 0 27px;
+}
+
+.site-footer {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #dee2e6;
+  padding: 8px 0;
+  font-size: 12px;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #495057;
+  text-decoration: none;
+}
+
+.brand-icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  object-fit: cover;
+}
+
+.footer-link {
+  color: #495057;
+  text-decoration: none;
+}
+
+.footer-brand:hover,
+.footer-link:hover {
+  color: #212529;
+  text-decoration: underline;
+}
+
 .home-hero {
   min-height: 273px;
   padding: 50px 26px;
@@ -85,13 +128,6 @@ body {
 .home-hero a:not(.register-button):hover {
   color: #2a6496;
   text-decoration: underline;
-}
-
-.home-hero hr {
-  width: 28px;
-  margin: 18px 0 12px;
-  border: 0;
-  border-top: 2px solid #555;
 }
 
 .home-hero .tagline {
@@ -127,6 +163,11 @@ body {
   }
 
   .page-content {
+    padding: 0 16px;
+  }
+
+  .footer-container {
+    margin-top: 24px;
     padding: 0 16px;
   }
 
