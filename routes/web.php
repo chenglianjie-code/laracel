@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\Route;
 |您可以在此处为应用程序注册 Web 路由。这些路由由 `RouteServiceProvider` 加载，
 并被纳入包含“web”中间件组的路由组中。现在，去创造些精彩的内容吧！
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/', [StaticPagesController::class, 'home']);
 Route::get('/help', [StaticPagesController::class, 'help']);
 Route::get('/about', [StaticPagesController::class, 'about']);

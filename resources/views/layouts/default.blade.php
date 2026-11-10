@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="zh-CN">
   <head>
-    <title>@yield('title','Weibo App') - Laravel 新手入门教程</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title', 'Weibo App') - Laravel 新手入门教程</title>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   </head>
   <body>
-    <!-- 下面的这行代码表示该占位区域将用于显示 content 区块的内容，
-     而 content 区块的内容将由继承自 default 视图的子视图定义。 -->
-    @yield('content')
+    <nav class="top-nav" aria-label="主导航">
+      <div class="nav-inner">
+        <a class="brand" href="{{ url('/') }}">Weibo App</a>
+
+        <div class="nav-links">
+          <a class="nav-link" href="{{ url('/help') }}">帮助</a>
+          <a class="nav-link" href="{{ url('/login') }}" title="登录页面将在后续步骤实现">登录</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="page-content">
+      @yield('content')
+    </main>
   </body>
 </html>
