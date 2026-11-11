@@ -8,8 +8,9 @@
   </head>
   <body>
     @include('layouts._header')
-
+      @include('shared._messages')
     <main class="page-content">
+
       @yield('content')
     </main>
 
