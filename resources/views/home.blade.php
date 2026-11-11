@@ -8,6 +8,6 @@
     </p>
 
     <p class="tagline">一切，将从这里开始。</p>
-    <a class="register-button" href="#" role="button">现在注册</a>
+    <a class="register-button" href="{{ route('signup') }}" role="button">现在注册</a>
   </section>
 @stop
