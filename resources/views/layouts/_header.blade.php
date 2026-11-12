@@ -4,7 +4,7 @@
 
     <div class="nav-links">
       @if (Auth::check())
-        <a class="nav-link" href="#">用户列表</a>
+        <a class="nav-link" href="{{route('users.index')}}">用户列表</a>
 
         <details class="user-menu">
           <summary class="nav-link user-menu-toggle">{{ Auth::user()->name }}</summary>

@@ -24,6 +24,11 @@ class UsersController extends Controller
         // 只让访客访问注册页面和注册提交操作：
         $this->middleware('guest')->only(['create', 'store']);
     }
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
     public function create()
     {
         return view('users.create');
