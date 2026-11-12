@@ -1004,6 +1004,72 @@ body {
     text-align: center;
 }
 
+.users-pagination-container {
+    padding: 0 22px 22px;
+}
+
+.users-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 18px;
+    border-top: 1px solid #edf1f5;
+}
+
+.users-pagination-summary {
+    margin: 0;
+    color: #7b8794;
+    font-size: 12px;
+}
+
+.users-pagination-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+}
+
+.users-page-link {
+    display: inline-flex;
+    min-width: 36px;
+    min-height: 36px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 11px;
+    border: 1px solid #dce5ee;
+    border-radius: 8px;
+    background: #fff;
+    color: #48647f;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+a.users-page-link:hover {
+    border-color: #a9c5e2;
+    background: #f4f8fc;
+    color: #2865a8;
+}
+
+.users-page-link.is-current {
+    border-color: #3978c5;
+    background: #3978c5;
+    color: #fff;
+}
+
+.users-page-link.is-disabled {
+    background: #f7f9fb;
+    color: #aab4bf;
+    cursor: not-allowed;
+}
+
+.users-page-ellipsis {
+    padding: 0 3px;
+    color: #8a98a8;
+}
+
 @media (max-width: 640px) {
     .users-index-page {
         width: calc(100% - 28px);
@@ -1024,6 +1090,15 @@ body {
 
     .users-table-scroll {
         padding: 12px 14px 16px;
+    }
+
+    .users-pagination-container {
+        padding: 0 14px 16px;
+    }
+
+    .users-pagination {
+        align-items: flex-start;
+        flex-direction: column;
     }
 
     .users-table {

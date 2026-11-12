@@ -9,7 +9,7 @@
       <h1 id="users-index-title">用户列表</h1>
       <p>浏览已注册的用户资料。</p>
     </div>
-    <span class="users-count">{{ $users->count() }} 位用户</span>
+    <span class="users-count">共 {{ $users->total() }} 位用户</span>
   </header>
 
   <div class="users-list-card">
@@ -50,6 +50,11 @@
           @endforelse
         </tbody>
       </table>
+    </div>
+    {{-- $users->onEachSide(1);                  // 设置页码显示范围 --}}
+    {{-- $users->links('pagination.users');      // 用自定义模板生成分页按钮 --}}
+    <div class="users-pagination-container">
+      {{ $users->onEachSide(1)->links('pagination.users') }}
     </div>
   </div>
 </section>
