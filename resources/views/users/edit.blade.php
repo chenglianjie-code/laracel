@@ -28,7 +28,6 @@
             value="{{ old('name', $user->name) }}"
             autocomplete="name"
             maxlength="50"
-            required
           >
         </div>
 
@@ -42,8 +41,6 @@
             value="{{ old('email', $user->email) }}"
             autocomplete="email"
             maxlength="255"
-            required
-            disabled
           >
         </div>
 

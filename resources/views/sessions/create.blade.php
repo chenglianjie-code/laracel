@@ -11,7 +11,7 @@
     <div class="login-card-body">
       @include('shared._errors')
 
-      <form method="POST" action="{{ route('login') }}">
+      <form method="POST" action="{{ route('login.store') }}">
         @csrf
 
         <div class="signup-field">

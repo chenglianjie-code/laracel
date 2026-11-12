@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [StaticPagesController::class, 'home'])->name('home');
 Route::get('/help', [StaticPagesController::class, 'help'])->name('help');
 Route::get('/about', [StaticPagesController::class, 'about'])->name('about');
-Route::get('/signup', [UsersController::class, 'signup'])->name('signup');
+Route::get('/signup', [UsersController::class, 'create'])->name('signup');
 
 // 登录退出路由
 // 显示登录界面
 Route::get('/login',[SessionsController::class, 'create'])->name('login');
 // 登录接口
-Route::post('/login',[SessionsController::class, 'store'])->name('login');
+Route::post('/login', [SessionsController::class, 'store'])->name('login.store');
 // 退出登录接口
 Route::delete('/logout',[SessionsController::class, 'destroy'])->name('logout');
 
@@ -33,8 +33,10 @@ Route::delete('/logout',[SessionsController::class, 'destroy'])->name('logout');
 
 
 
-// 新增的 resource 方法将遵从 RESTful 架构为用户资源生成路由。该方法接收两个参数，第一个参数为资源名称，第二个参数为控制器名称。
-Route::resource('users', UsersController::class);
+// 只注册控制器中已实现的用户资源操作；注册表单使用上方的 /signup 路由。
+Route::resource('users', UsersController::class)->only([
+    'store', 'show', 'edit', 'update',
+]);
 // 等同于
 // Route::get('/users', 'UsersController@index')->name('users.index');
 // Route::get('/users/create', 'UsersController@create')->name('users.create');
