@@ -8,19 +8,21 @@ body {
 }
 
 .top-nav {
-    min-height: 45px;
+    position: relative;
+    z-index: 10;
+    min-height: 42px;
     background: #343a40;
 }
 
 .nav-inner {
     display: flex;
     width: 100%;
-    max-width: 1200px;
-    min-height: 45px;
+    max-width: 720px;
+    min-height: 42px;
     align-items: center;
     justify-content: space-between;
     margin: 0 auto;
-    padding: 0 27px;
+    padding: 0 20px;
 }
 
 .brand,
@@ -30,16 +32,18 @@ body {
 }
 
 .brand {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .nav-links {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
 }
 
 .nav-link {
+    display: inline-flex;
+    align-items: center;
     color: #adb5bd;
     font-size: 13px;
 }
@@ -47,6 +51,97 @@ body {
 .brand:hover,
 .nav-link:hover {
     color: #fff;
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-menu-toggle {
+    cursor: pointer;
+    list-style: none;
+}
+
+.user-menu-toggle::-webkit-details-marker {
+    display: none;
+}
+
+.user-menu-toggle::after {
+    width: 5px;
+    height: 5px;
+    margin: -3px 0 0 6px;
+    transform: rotate(45deg);
+    border-right: 1px solid currentColor;
+    border-bottom: 1px solid currentColor;
+    content: "";
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 7px);
+    right: 0;
+    display: none;
+    width: 116px;
+    overflow: hidden;
+    border: 1px solid #dedede;
+    border-radius: 3px;
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.user-menu[open] .dropdown-menu,
+.user-menu:hover .dropdown-menu,
+.user-menu:focus-within .dropdown-menu {
+    display: block;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 8px 16px;
+    color: #333;
+    font-size: 13px;
+    line-height: 1.35;
+    text-decoration: none;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus-visible {
+    background: #f5f5f5;
+    color: #222;
+}
+
+.dropdown-divider {
+    height: 1px;
+    margin: 5px 0;
+    background: #e5e5e5;
+}
+
+.dropdown-menu form {
+    padding: 7px 16px 9px;
+}
+
+.logout-button {
+    display: block;
+    width: 100%;
+    min-height: 29px;
+    border: 1px solid #c83f48;
+    border-radius: 3px;
+    background: #d3444d;
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    border-color: #ac3039;
+    background: #bd3540;
+}
+
+.logout-button:focus-visible,
+.user-menu-toggle:focus-visible {
+    outline: 2px solid #91b7e8;
+    outline-offset: 3px;
 }
 
 .page-content {
