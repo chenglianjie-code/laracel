@@ -397,6 +397,55 @@ body {
     padding: 14px;
 }
 
+.login-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 1px 0 14px;
+}
+
+.login-remember-checkbox {
+    position: relative;
+    display: inline-grid;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    place-items: center;
+    appearance: none;
+    margin: 0;
+    border: 1px solid #c6cbd1;
+    border-radius: 4px;
+    background: #fff;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.login-remember-checkbox:checked {
+    border-color: #337ab7;
+    background: #337ab7;
+}
+
+.login-remember-checkbox:checked::after {
+    width: 4px;
+    height: 8px;
+    transform: translateY(-1px) rotate(45deg);
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    content: "";
+}
+
+.login-remember-checkbox:focus-visible {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(51, 122, 183, 0.2);
+}
+
+.login-remember label {
+    color: #555;
+    font-size: 13px;
+    cursor: pointer;
+    user-select: none;
+}
+
 .login-divider {
     margin: 10px 0 13px;
     border: 0;

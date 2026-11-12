@@ -38,6 +38,16 @@
         
           >
         </div>
+        <div class="login-remember">
+          <input
+            class="login-remember-checkbox"
+            type="checkbox"
+            name="remember"
+            id="remember"
+            value="1"
+          >
+          <label for="remember">记住我</label>
+        </div>
 
         <button class="signup-button" type="submit">登录</button>
       </form>
