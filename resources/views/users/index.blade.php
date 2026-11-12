@@ -40,6 +40,13 @@
                 <div class="users-actions">
                   <a class="users-action-link" href="{{ route('users.show', $user) }}">查看</a>
                   <a class="users-action-link" href="{{ route('users.edit', $user) }}">编辑</a>
+                  @can('destroy', $user)
+                  <form action="{{ route('users.destroy', $user) }}" method="POST" style="display: inline-block;">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="users-action-link">删除</button>
+                  </form>
+                  @endcan
                 </div>
               </td>
             </tr>

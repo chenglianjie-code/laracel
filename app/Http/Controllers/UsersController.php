@@ -27,6 +27,14 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::paginate(5);
+
+        // 如果当前页的数据被删除，页码超过了新的最后一页，就跳回最后一页。
+        if ($users->currentPage() > $users->lastPage()) {
+            return redirect()->route('users.index', [
+                'page' => $users->lastPage(),
+            ]);
+        }
+
         return view('users.index', compact('users'));
     }
     public function create()
@@ -99,5 +107,12 @@ class UsersController extends Controller
         $request->session()->regenerate();
         session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
         return redirect()->route('users.show', [$user]);
+    }
+    public function destroy(User $user)
+    {
+           $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '成功删除用户！');
+        return back();
     }
 }

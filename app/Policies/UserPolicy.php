@@ -23,5 +23,10 @@ class UserPolicy
     // 调用时，默认情况下，我们 不需要 传递当前登录用户至该方法内，因为框架会自动加载当前登录用户（接着看下去，后面有例子）。
         return $currentUser->is($user);
     }
+     public function destroy(User $currentUser, User $user)
+    {
+        // 只有当前用户拥有管理员权限且删除的用户不是自己时才显示链接。
+        return $currentUser->is_admin && $currentUser->id !== $user->id;
+    }
 
 }

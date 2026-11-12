@@ -35,7 +35,7 @@ Route::delete('/logout',[SessionsController::class, 'destroy'])->name('logout');
 
 // 只注册控制器中已实现的用户资源操作；注册表单使用上方的 /signup 路由。
 Route::resource('users', UsersController::class)->only([
-    'store', 'show', 'edit', 'update','index',
+    'store', 'show', 'edit', 'update','index','destroy',
 ]);
 // 等同于
 // Route::get('/users', 'UsersController@index')->name('users.index');
