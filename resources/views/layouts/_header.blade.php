@@ -10,7 +10,7 @@
           <summary class="nav-link user-menu-toggle">{{ Auth::user()->name }}</summary>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="{{ route('users.show', Auth::user()) }}">个人中心</a>
-            <a class="dropdown-item" href="#">编辑资料</a>
+            <a class="dropdown-item" href="{{route('users.edit', Auth::user())}}">编辑资料</a>
             <div class="dropdown-divider"></div>
             <form action="{{ route('logout') }}" method="POST">
               @csrf
