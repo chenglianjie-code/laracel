@@ -16,11 +16,11 @@ class PasswordController extends Controller
       public function __construct()
     {    
         // 限流中间件
-        $this->middleware('throttle:2,10', [
+        $this->middleware('throttle:100,10', [
             'only' => ['showLinkRequestForm']
         ]);
         // 发送密码重置邮件，限流规则为 —— 10 分钟内只能尝试 3 次：
-          $this->middleware('throttle:3,10', [
+          $this->middleware('throttle:100,10', [
             'only' => ['sendResetLinkEmail']
         ]);
          

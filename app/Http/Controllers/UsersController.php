@@ -133,11 +133,8 @@ class UsersController extends Controller
     protected function sendEmailConfirmationTo($user)
     {
         $view = 'emails.confirm';
-        $from = 'chenglianjie1997@gmail.com';
-        $name = '测试邮件激活';
-        Mail::send($view, ['user' => $user], function ($message) use ($user, $from, $name) {
+        Mail::send($view, ['user' => $user], function ($message) use ($user) {
             $message->to($user->email, $user->name)
-                ->from($from, $name)
                 ->subject('感谢注册！');
         });
     }
