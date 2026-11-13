@@ -1,10 +1,13 @@
-<li class="d-flex mt-4 mb-4">
-  <a class="flex-shrink-0" href="{{ route('users.show', $user->id )}}">
-    <img src="{{ $user->gravatar() }}" alt="{{ $user->name }}" class="me-1 gravatar"/>
+<li class="status-item">
+  <a class="status-avatar" href="{{ route('users.show', $user) }}" aria-label="查看 {{ $user->name }} 的个人资料">
+    <img src="{{ $user->gravatar() }}" alt="" class="gravatar" />
   </a>
-  <div class="flex-grow-1 ms-3">
-    <h5 class="mt-0 mb-1">{{ $user->name }} <small> / {{ $status->created_at->diffForHumans() }}</small></h5>
+  <div class="status-item-body">
+    <div class="status-item-meta">
+      <a class="status-author" href="{{ route('users.show', $user) }}">{{ $user->name }}</a>
+      <time datetime="{{ $status->created_at->toIso8601String() }}">{{ $status->created_at->diffForHumans() }}</time>
+    </div>
     {{-- $status 实例代表的是单条微博的数据，$user 实例代表的是该微博发布者的数据 --}}
-    {{ $status->content }}
+    <p class="status-item-content">{{ $status->content }}</p>
   </div>
 </li>

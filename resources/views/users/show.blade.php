@@ -15,23 +15,37 @@
       @include('shared._user_info', ['user' => $user])
     </section>
 
-    
-
     <div class="user-profile-meta">
       <span>用户编号</span>
       <strong>#{{ $user->id }}</strong>
     </div>
   </div>
-  <section>
-      @if($statuses->count()>0)
-      <ul>
-         @foreach($statuses as $status)
+  <section class="user-statuses" aria-labelledby="user-statuses-title">
+    <header class="user-statuses-heading">
+      <div>
+        <p class="user-statuses-kicker">RECENT POSTS</p>
+        <h3 id="user-statuses-title">微博动态</h3>
+      </div>
+      <span class="user-statuses-count">{{ $statuses->total() }} 条动态</span>
+    </header>
+
+    @if ($statuses->count() > 0)
+      <ul class="status-list">
+        @foreach ($statuses as $status)
           @include('weibo._weibo')
-         @endforeach
+        @endforeach
       </ul>
-      @else 
-      <p>没有数据</p>
-      @endif
-    </section>
+
+      <div class="status-pagination">
+        {{ $statuses->onEachSide(1)->links('pagination.users') }}
+      </div>
+    @else
+      <div class="status-empty">
+        <span class="status-empty-icon" aria-hidden="true">✦</span>
+        <h4>还没有微博动态</h4>
+        <p>这个用户发布的内容会显示在这里。</p>
+      </div>
+    @endif
+  </section>
 </section>
 @stop

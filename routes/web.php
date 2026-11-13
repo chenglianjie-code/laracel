@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\StatusesController;
 
 Route::get('/', [StaticPagesController::class, 'home'])->name('home');
 Route::get('/help', [StaticPagesController::class, 'help'])->name('help');
@@ -28,6 +29,12 @@ Route::post('password/email',  [PasswordController::class, 'sendResetLinkEmail']
 Route::get('password/reset/{token}',  [PasswordController::class, 'showResetForm'])->name('password.reset');
 // 对提交过来的 token 和 email 数据进行配对，正确的话更新密码
 Route::post('password/reset',  [PasswordController::class, 'reset'])->name('password.update');
+
+// 创建微博
+Route::post('create/weibo',[StatusesController::class,'create'])->name('create/weibo');
+// 删除微博
+Route::delete('create/weibo',[StatusesController::class,'delete']);
+
 
 
 
