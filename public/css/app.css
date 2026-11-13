@@ -194,11 +194,127 @@ body {
     text-decoration: underline;
 }
 
+.home-page {
+    max-width: 980px;
+    padding-top: 32px;
+}
+
 .home-hero {
-    min-height: 273px;
-    padding: 50px 26px;
-    border-radius: 4px;
-    background: linear-gradient(110deg, #e9ecef, #e6eaee);
+    position: relative;
+    display: flex;
+    min-height: 238px;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    border: 1px solid #e1eaf5;
+    border-radius: 22px;
+    padding: 38px 48px;
+    background:
+        radial-gradient(circle at 85% 24%, rgba(255, 255, 255, 0.9), transparent 24%),
+        linear-gradient(115deg, #f4f8fd 0%, #eaf3fc 56%, #e8f4f4 100%);
+    box-shadow: 0 16px 38px rgba(45, 76, 111, 0.08);
+}
+
+.home-hero-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.home-eyebrow,
+.home-feed-kicker {
+    margin: 0 0 11px;
+    color: #6684a6;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+}
+
+.home-eyebrow span {
+    padding: 0 4px;
+    color: #98b0c9;
+}
+
+.home-hero h1 {
+    margin: 0 0 10px;
+    color: #253a52;
+    font-size: clamp(27px, 4vw, 38px);
+    font-weight: 650;
+    letter-spacing: -0.035em;
+    line-height: 1.2;
+}
+
+.home-hero .lead {
+    margin: 0;
+    color: #6c7f94;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+.home-hero .lead a {
+    color: #3979bd;
+    text-decoration: none;
+}
+
+.home-hero .lead a:hover {
+    color: #245f9f;
+    text-decoration: underline;
+}
+
+.home-profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 23px;
+    color: #3979bd;
+    font-size: 13px;
+    font-weight: 650;
+    text-decoration: none;
+}
+
+.home-profile-link:hover {
+    color: #245f9f;
+}
+
+.home-hero-art {
+    position: relative;
+    display: grid;
+    flex: 0 0 176px;
+    width: 176px;
+    height: 150px;
+    place-items: center;
+    margin-right: 34px;
+}
+
+.home-hero-orbit {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(93, 143, 192, 0.22);
+    border-radius: 50%;
+}
+
+.home-hero-orbit-one {
+    width: 112px;
+    height: 112px;
+}
+
+.home-hero-orbit-two {
+    width: 154px;
+    height: 154px;
+    border-style: dashed;
+}
+
+.home-hero-star {
+    display: grid;
+    width: 66px;
+    height: 66px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 22px;
+    background: linear-gradient(145deg, #6ea5dc, #4d83c2);
+    box-shadow: 0 12px 28px rgba(58, 112, 171, 0.25);
+    color: white;
+    font-size: 31px;
+    transform: rotate(-8deg);
 }
 
 /* 主页微博发布卡片 */
@@ -336,51 +452,62 @@ body {
     background: #fff5f5;
 }
 
-.home-hero h1 {
-    margin: 0 0 5px;
-    color: #212529;
-    font-size: 32px;
-    font-weight: 400;
-    line-height: 1.25;
-}
-
-.home-hero .lead {
-    margin: 0;
-    color: #777;
-    font-size: 16px;
-}
-
-.home-hero a:not(.register-button) {
-    color: #428bca;
-    text-decoration: none;
-}
-
-.home-hero a:not(.register-button):hover {
-    color: #2a6496;
-    text-decoration: underline;
-}
-
-.home-hero .tagline {
-    margin: 0 0 12px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
 .register-button {
-    display: inline-block;
-    padding: 9px 14px;
-    border: 1px solid #4cae4c;
-    border-radius: 4px;
-    background: #5cb85c;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 23px;
+    border: 1px solid #3477bc;
+    border-radius: 9px;
+    padding: 10px 15px;
+    background: #397fc4;
+    box-shadow: 0 5px 13px rgba(57, 127, 196, 0.18);
     color: #fff;
-    font-size: 16px;
-    line-height: 1.4;
+    font-size: 13px;
+    font-weight: 650;
     text-decoration: none;
+    transition: background-color 150ms ease, transform 150ms ease;
 }
 
 .register-button:hover {
-    border-color: #398439;
-    background: #449d44;
+    transform: translateY(-1px);
+    border-color: #2c69a7;
+    background: #326fae;
+}
+
+.home-page .status_form {
+    max-width: 760px;
+    margin: 26px auto 48px;
+    border-radius: 18px;
+    padding: 28px;
+}
+
+.home-feed-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin: 32px 0 15px;
+    border-top: 1px solid #edf1f5;
+    padding-top: 23px;
+}
+
+.home-feed-heading .home-feed-kicker {
+    margin-bottom: 3px;
+    font-size: 9px;
+}
+
+.home-feed-heading h2 {
+    margin: 0;
+    color: #2b3e53;
+    font-size: 19px;
+    font-weight: 650;
+}
+
+.home-feed-heading > span {
+    padding-bottom: 2px;
+    color: #8b98a7;
+    font-size: 12px;
 }
 
 /* 用户注册页 */
@@ -1440,12 +1567,35 @@ a.users-page-link:hover {
     }
 
     .home-hero {
-        min-height: 250px;
-        padding: 38px 22px;
+        min-height: 190px;
+        border-radius: 17px;
+        padding: 28px 22px;
     }
 
     .home-hero h1 {
-        font-size: 29px;
+        font-size: 27px;
+    }
+
+    .home-hero-art {
+        flex-basis: 80px;
+        width: 80px;
+        height: 100px;
+        margin: 0 -10px 0 4px;
+        transform: scale(0.72);
+    }
+
+    .home-page .status_form {
+        margin: 20px auto 32px;
+        border-radius: 14px;
+        padding: 19px;
+    }
+
+    .home-feed-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+        margin-top: 25px;
+        padding-top: 19px;
     }
 
     .status_form {
