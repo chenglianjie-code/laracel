@@ -63,4 +63,8 @@ class User extends Authenticatable
         return "https://cdn.v2ex.com/gravatar/".md5(strtolower(trim($this->attributes['email'])))."?s=".$size;
 
     }
+    // 在用户模型中，指明一个用户拥有多条微博。
+    public function statuses(){
+        return $this->hasMany(Status::class);
+    }
 }
