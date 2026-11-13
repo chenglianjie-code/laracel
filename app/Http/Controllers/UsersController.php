@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
@@ -19,11 +20,24 @@ class UsersController extends Controller
             // show：查看用户资料
             // create：显示注册表单
             // store：处理注册提交
-            'except' => ['show', 'create', 'store'],
+            'except' => ['show', 'create', 'store', 'confirmEmail'],
         ]);
         // 只让访客访问注册页面和注册提交操作：
         $this->middleware('guest')->only(['create', 'store']);
     }
+
+    public function confirmEmail($token)
+    {
+        $user = User::where('activation_token', $token)->firstOrFail();
+        $user->activated = true;
+        $user->activation_token = null;
+        $user->save();
+        Auth::login($user);
+        session()->flash('success', '恭喜你，激活成功！');
+
+        return redirect()->route('users.show', [$user]);
+    }
+
     public function index()
     {
         $users = User::paginate(5);
@@ -44,7 +58,7 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
-         $this->authorize('update', $user);
+        $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
 
@@ -88,6 +102,7 @@ class UsersController extends Controller
         return redirect()->route('users.show', [$user]);
     }
 
+    // 注册操作
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -101,16 +116,32 @@ class UsersController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
         ]);
+        $this->sendEmailConfirmationTo($user);
+        session()->flash('success', '验证邮件已发送到你的注册邮箱上，请注意查收。');
+        return redirect('/');
         // 现在的注册功能已经可以正常使用，但我们希望在用户注册成功后能够自动登录，这样的应用用户体验会更棒。
         // 在 Laravel 中，如果要让一个已认证通过的用户实例进行登录，可以使用以下方法：Auth::login($user);
-        Auth::login($user);
-        $request->session()->regenerate();
-        session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
-        return redirect()->route('users.show', [$user]);
+        // 先屏蔽掉
+        // Auth::login($user);
+        // $request->session()->regenerate();
+        // session()->flash('success', '欢迎，您将在这里开启一段新的旅程~');
+        // return redirect()->route('users.show', [$user]);
+    }
+
+    protected function sendEmailConfirmationTo($user)
+    {
+        $view = 'emails.confirm';
+        $from = 'chenglianjie1997@gmail.com';
+        $name = '测试邮件激活';
+        Mail::send($view, ['user' => $user], function ($message) use ($user, $from, $name) {
+            $message->to($user->email, $user->name)
+                ->from($from, $name)
+                ->subject('感谢注册！');
+        });
     }
     public function destroy(User $user)
     {
-           $this->authorize('destroy', $user);
+        $this->authorize('destroy', $user);
         $user->delete();
         session()->flash('success', '成功删除用户！');
         return back();

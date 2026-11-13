@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory; // 是模型工厂相关功能的引用
 use Illuminate\Foundation\Auth\User as Authenticatable; // 是授权相关功能的引用
 use Illuminate\Notifications\Notifiable; // 是消息通知相关功能引用
+use Illuminate\Support\Str; // 字符串处理辅助类
 use Laravel\Sanctum\HasApiTokens; //  API 令牌修改功能
 
 // Authenticatable 可验证的
@@ -36,6 +37,13 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    // boot 方法会在用户模型类完成初始化之后进行加载，因此我们对事件的监听需要放在该方法中。
+    public static function boot(){
+        parent::boot();
+        static::creating(function ($user) {
+            $user->activation_token = Str::random(30);
+        });
+    }
 
     /**
      * The attributes that should be cast.
