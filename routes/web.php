@@ -4,6 +4,7 @@ use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PasswordController;
 
 Route::get('/', [StaticPagesController::class, 'home'])->name('home');
 Route::get('/help', [StaticPagesController::class, 'help'])->name('help');
@@ -18,6 +19,15 @@ Route::post('/login', [SessionsController::class, 'store'])->name('login.store')
 // 退出登录接口
 Route::delete('/logout',[SessionsController::class, 'destroy'])->name('logout');
 Route::get('signup/confirm/{token}',[UsersController::class, 'confirmEmail'])->name('confirm_email');
+
+// 填写 Email 的表单
+Route::get('password/reset',  [PasswordController::class, 'showLinkRequestForm'])->name('password.request');
+//  处理表单提交，成功的话就发送邮件，附带 Token 的链接
+Route::post('password/email',  [PasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+// 显示更新密码的表单，包含 token
+Route::get('password/reset/{token}',  [PasswordController::class, 'showResetForm'])->name('password.reset');
+// 对提交过来的 token 和 email 数据进行配对，正确的话更新密码
+Route::post('password/reset',  [PasswordController::class, 'reset'])->name('password.update');
 
 
 

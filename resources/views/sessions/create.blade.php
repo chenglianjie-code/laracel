@@ -28,7 +28,7 @@
         </div>
 
         <div class="signup-field">
-          <label for="password">密码：</label>
+          <label for="password">密码：<a href="{{ route('password.request') }}">忘记密码</a></label>
           <input
             id="password"
             class="signup-input"
@@ -38,6 +38,7 @@
         
           >
         </div>
+
         <div class="login-remember">
           <input
             class="login-remember-checkbox"

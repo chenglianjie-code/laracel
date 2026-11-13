@@ -12,6 +12,7 @@ class SessionsController extends Controller
         // 登录页和登录提交只允许访客访问；退出操作必须登录。
         $this->middleware('guest')->only(['create', 'store']);
         $this->middleware('auth')->only('destroy');
+        $this->middleware('throttle:100,10')->only('store');
     }
 
     public function create()

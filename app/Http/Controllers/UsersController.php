@@ -24,6 +24,8 @@ class UsersController extends Controller
         ]);
         // 只让访客访问注册页面和注册提交操作：
         $this->middleware('guest')->only(['create', 'store']);
+        // 规则是一个小时内只能提交 10 次请求：
+        $this->middleware('throttle:10,60')->only(['store']);
     }
 
     public function confirmEmail($token)
