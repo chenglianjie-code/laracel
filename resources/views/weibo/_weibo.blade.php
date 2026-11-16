@@ -9,5 +9,12 @@
     </div>
     {{-- $status 实例代表的是单条微博的数据，$user 实例代表的是该微博发布者的数据 --}}
     <p class="status-item-content">{{ $status->content }}</p>
+    @can('destroy', $status)
+      <form class="status-delete-form" action="{{ route('statuses.destroy', $status) }}" method="POST" onsubmit="return confirm('您确定要删除本条微博吗？');">
+        @csrf
+        @method('DELETE')
+        <button class="status-delete-button" type="submit">删除微博</button>
+      </form>
+    @endcan
   </div>
 </li>

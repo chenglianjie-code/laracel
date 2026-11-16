@@ -1135,6 +1135,27 @@ body {
     white-space: pre-wrap;
 }
 
+.status-delete-form {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 9px;
+}
+
+.status-delete-button {
+    border: 0;
+    padding: 4px 0 4px 10px;
+    background: transparent;
+    color: #a16b70;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.status-delete-button:hover {
+    color: #bd3948;
+    text-decoration: underline;
+}
+
 .status-pagination {
     margin-top: 16px;
     border: 1px solid #e5ebf1;

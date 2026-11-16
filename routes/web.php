@@ -33,7 +33,7 @@ Route::post('password/reset',  [PasswordController::class, 'reset'])->name('pass
 // 创建微博
 Route::post('create/weibo',[StatusesController::class,'create'])->name('create/weibo');
 // 删除微博
-Route::delete('create/weibo',[StatusesController::class,'delete']);
+Route::delete('/statuses/{status}', [StatusesController::class, 'destroy'])->name('statuses.destroy');
 
 
 
