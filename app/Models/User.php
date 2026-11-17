@@ -67,8 +67,17 @@ class User extends Authenticatable
     public function statuses(){
         return $this->hasMany(Status::class);
     }
+    //     // 加入关注人的微博动态数据
     public function feed(){
-        return $this->statuses()->orderBy('created_at','desc');
+    
+        // 通过 followings 方法取出所有关注用户的信息，再借助 pluck 方法将 id 进行分离并赋值给 user_ids
+         $user_ids = $this->followings->pluck('id')->toArray();
+        array_push($user_ids, $this->id);
+        // 取出所有用户的微博动态并进行倒序排序；
+        return Status::whereIn('user_id', $user_ids)
+                              ->with('user')
+                              ->orderBy('created_at', 'desc');
+        // return $this->statuses()->orderBy('created_at','desc');
     }
 
     public function followers(){
