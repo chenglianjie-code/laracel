@@ -44,6 +44,9 @@
           </div>
           <span>看看大家的新鲜事</span>
         </div>
+        <div class="home-profile-stats" aria-label="我的统计信息">
+          @include('shared._stats', ['user' => Auth::user()])
+        </div>
         @include('shared._feed')
       </section>
     @endauth

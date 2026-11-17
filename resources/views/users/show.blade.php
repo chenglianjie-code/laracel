@@ -14,6 +14,9 @@
     <section class="user_info" aria-label="用户信息">
       @include('shared._user_info', ['user' => $user])
     </section>
+    <section class="user-profile-stats" aria-label="用户统计">
+      @include('shared._stats', ['user' => $user])
+    </section>
 
     <div class="user-profile-meta">
       <span>用户编号</span>

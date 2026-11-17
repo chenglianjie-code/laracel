@@ -510,6 +510,37 @@ body {
     font-size: 12px;
 }
 
+.home-profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 17px 0 16px;
+    overflow: hidden;
+    border: 1px solid #e3ebf4;
+    border-radius: 12px;
+    background: #f8fbff;
+}
+
+.home-profile-stats .profile-stat {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 8px;
+    padding: 13px 10px;
+}
+
+.home-profile-stats .profile-stat + .profile-stat {
+    border-left: 1px solid #e3ebf4;
+}
+
+.home-profile-stats .profile-stat-value {
+    color: #3478bd;
+    font-size: 18px;
+}
+
+.home-profile-stats .profile-stat-label {
+    color: #75869a;
+    font-size: 12px;
+}
+
 /* 用户注册页 */
 .signup-page {
     width: 100%;
@@ -997,6 +1028,41 @@ body {
     height: 7px;
     border-radius: 50%;
     background: #57ad7d;
+}
+
+.user-profile-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid #edf0f4;
+    padding: 16px 24px;
+    background: #fbfcfe;
+}
+
+.profile-stat {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 2px 10px;
+    text-align: center;
+}
+
+.profile-stat + .profile-stat {
+    border-left: 1px solid #e8edf2;
+}
+
+.profile-stat-value {
+    color: #2f5f91;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.profile-stat-label {
+    color: #8391a0;
+    font-size: 12px;
 }
 
 .user-profile-meta {
@@ -1619,6 +1685,19 @@ a.users-page-link:hover {
         padding-top: 19px;
     }
 
+    .home-profile-stats .profile-stat {
+        gap: 5px;
+        padding: 12px 5px;
+    }
+
+    .home-profile-stats .profile-stat-value {
+        font-size: 16px;
+    }
+
+    .home-profile-stats .profile-stat-label {
+        font-size: 11px;
+    }
+
     .status_form {
         margin: 20px auto 32px;
         border-radius: 13px;
@@ -1693,6 +1772,18 @@ a.users-page-link:hover {
 
     .user-profile-meta {
         padding: 13px 20px;
+    }
+
+    .user-profile-stats {
+        padding: 14px 10px;
+    }
+
+    .profile-stat {
+        padding: 2px 6px;
+    }
+
+    .profile-stat-value {
+        font-size: 18px;
     }
 
     .flash-message {
