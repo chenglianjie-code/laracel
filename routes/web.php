@@ -35,6 +35,9 @@ Route::post('create/weibo',[StatusesController::class,'create'])->name('create/w
 // 删除微博
 Route::delete('/statuses/{status}', [StatusesController::class, 'destroy'])->name('statuses.destroy');
 
+// 关注的人和粉丝列表
+Route::get('/users/{user}/followings',[UsersController::class,'followings'])->name('users.followings');
+Route::get('/users/{user}/followers',[UsersController::class,'followers'])->name('users.followers');
 
 
 

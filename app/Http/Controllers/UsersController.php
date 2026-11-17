@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -53,6 +54,7 @@ class UsersController extends Controller
 
         return view('users.index', compact('users'));
     }
+
     public function create()
     {
         return view('users.create');
@@ -61,13 +63,16 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $this->authorize('update', $user);
+
         return view('users.edit', compact('user'));
     }
 
     public function show(User $user)
-    {   $statuses = $user->statuses()->orderBy('created_at','desc')->paginate(10);
-        //compact 方法可以同时接收多个参数，在上面代码我们将用户数据 $user 和微博动态数据 $statuses 同时传递给用户个人页面的视图上。
-        return view('users.show', compact('user','statuses'));
+    {
+        $statuses = $user->statuses()->orderBy('created_at', 'desc')->paginate(10);
+
+        // compact 方法可以同时接收多个参数，在上面代码我们将用户数据 $user 和微博动态数据 $statuses 同时传递给用户个人页面的视图上。
+        return view('users.show', compact('user', 'statuses'));
     }
 
     public function update(Request $request, User $user)
@@ -102,6 +107,7 @@ class UsersController extends Controller
         }
         $user->update($info);
         session()->flash('success', '修改成功');
+
         return redirect()->route('users.show', [$user]);
     }
 
@@ -121,6 +127,7 @@ class UsersController extends Controller
         ]);
         $this->sendEmailConfirmationTo($user);
         session()->flash('success', '验证邮件已发送到你的注册邮箱上，请注意查收。');
+
         return redirect('/');
         // 现在的注册功能已经可以正常使用，但我们希望在用户注册成功后能够自动登录，这样的应用用户体验会更棒。
         // 在 Laravel 中，如果要让一个已认证通过的用户实例进行登录，可以使用以下方法：Auth::login($user);
@@ -145,5 +152,19 @@ class UsersController extends Controller
         $user->delete();
         session()->flash('success', '成功删除用户！');
         return back();
+    }
+
+    public function followings(User $user)
+    {
+        $users = $user->followings()->paginate(30);
+        $title = $user->name.'关注的人';
+        return view('users.show_follow', compact('users', 'title'));
+    }
+
+    public function followers(User $user)
+    {
+        $users = $user->followers()->paginate(30);
+        $title = $user->name.'的粉丝';
+        return view('users.show_follow', compact('users', 'title'));
     }
 }
