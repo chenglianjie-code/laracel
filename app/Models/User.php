@@ -70,4 +70,40 @@ class User extends Authenticatable
     public function feed(){
         return $this->statuses()->orderBy('created_at','desc');
     }
+
+    public function followers(){
+        // 关联表名改为 followers
+        // 除了自定义合并数据表的名称，我们也可以通过传递额外参数至 belongsToMany 方法来自定义数据表里的字段名称。如下：
+        // belongsToMany 方法的第三个参数 user_id 是定义在关联中的模型外键名，而第四个参数 follower_id 则是要合并的模型外键名。
+        return $this->belongsToMany(User::class,'followers','user_id', 'follower_id');
+    }
+
+     public function followings()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'follower_id', 'user_id');
+    }
+    
+    // 关注
+    public function follow($user_ids){
+      if(!is_array($user_ids)){
+        // compact() 是 PHP 自带的函数：把变量变成一个关联数组。参数里写的是变量名字符串。
+        $user_ids = compact('user_ids');
+      }
+      $this->followings()->sync($user_ids,false);
+       
+    }
+    // 取消关注
+    public function unfollow($user_ids){
+        if(!is_array($user_ids)){
+            $user_ids = compact('$user_ids');
+        };
+        $this->followings()->detach($user_ids);
+    }
+    // 判断当前登录的用户 A 是否关注了用户 B
+    public function isFollowing($user_id){
+        return $this->followings()->contains($user_id);
+    }
+
+
+
 }
