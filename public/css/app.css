@@ -1065,6 +1065,80 @@ body {
     font-size: 12px;
 }
 
+.follow-action-panel {
+    display: flex;
+    min-height: 72px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    border-top: 1px solid #edf0f4;
+    padding: 14px 36px;
+    background: #fff;
+}
+
+.follow-action-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    color: #718196;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.follow-state-indicator {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #54a77b;
+    box-shadow: 0 0 0 3px #eaf6ef;
+}
+
+.follow-action-button {
+    display: inline-flex;
+    min-width: 104px;
+    min-height: 38px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #3478bd;
+    border-radius: 8px;
+    padding: 0 16px;
+    background: #397fc4;
+    box-shadow: 0 4px 10px rgba(57, 127, 196, 0.16);
+    color: #fff;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 650;
+    cursor: pointer;
+    transition: background-color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.follow-action-button:hover {
+    border-color: #2c69a7;
+    background: #326fae;
+    box-shadow: 0 6px 13px rgba(57, 127, 196, 0.22);
+}
+
+.follow-action-button:focus-visible {
+    outline: 3px solid rgba(67, 137, 212, 0.25);
+    outline-offset: 3px;
+}
+
+.follow-action-button-remove {
+    border-color: #d9e1e9;
+    background: #fff;
+    box-shadow: none;
+    color: #657589;
+}
+
+.follow-action-button-remove:hover {
+    border-color: #e5b9bd;
+    background: #fff6f6;
+    box-shadow: none;
+    color: #a84750;
+}
+
 .user-profile-meta {
     display: flex;
     align-items: center;
@@ -1972,6 +2046,20 @@ a.users-page-link:hover {
 
     .user-profile-meta {
         padding: 13px 20px;
+    }
+
+    .follow-action-panel {
+        min-height: 66px;
+        padding: 12px 20px;
+    }
+
+    .follow-action-copy {
+        font-size: 12px;
+    }
+
+    .follow-action-button {
+        min-width: 92px;
+        min-height: 36px;
     }
 
     .user-profile-stats {

@@ -85,23 +85,26 @@ class User extends Authenticatable
     
     // 关注
     public function follow($user_ids){
-      if(!is_array($user_ids)){
-        // compact() 是 PHP 自带的函数：把变量变成一个关联数组。参数里写的是变量名字符串。
-        $user_ids = compact('user_ids');
-      }
-      $this->followings()->sync($user_ids,false);
-       
+        // 传入单个用户 ID 时，先转成 ID 列表。
+        $user_ids = is_array($user_ids) ? $user_ids : [$user_ids];
+
+        // 保留已有关注，只添加新关注。
+        $this->followings()->syncWithoutDetaching($user_ids);
     }
+
     // 取消关注
     public function unfollow($user_ids){
-        if(!is_array($user_ids)){
-            $user_ids = compact('$user_ids');
-        };
+        // detach 接收要取消关注的用户 ID 列表。
+        $user_ids = is_array($user_ids) ? $user_ids : [$user_ids];
+
         $this->followings()->detach($user_ids);
     }
+
     // 判断当前登录的用户 A 是否关注了用户 B
     public function isFollowing($user_id){
-        return $this->followings()->contains($user_id);
+        return $this->followings()
+            ->where('users.id', $user_id)
+            ->exists();
     }
 
 

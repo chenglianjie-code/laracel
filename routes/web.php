@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\FollowersController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PasswordController;
@@ -38,6 +39,9 @@ Route::delete('/statuses/{status}', [StatusesController::class, 'destroy'])->nam
 // 关注的人和粉丝列表
 Route::get('/users/{user}/followings',[UsersController::class,'followings'])->name('users.followings');
 Route::get('/users/{user}/followers',[UsersController::class,'followers'])->name('users.followers');
+// 关注用户和取消关注
+Route::post('/users/followers/{user}', [FollowersController::class,'store'])->name('followers.store');
+Route::delete('/users/followers/{user}', [FollowersController::class,'destroy'])->name('followers.destroy');
 
 
 

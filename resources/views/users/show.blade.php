@@ -18,6 +18,10 @@
       @include('shared._stats', ['user' => $user])
     </section>
 
+    @if (Auth::check())
+      @include('users._follow_form')
+    @endif
+
     <div class="user-profile-meta">
       <span>用户编号</span>
       <strong>#{{ $user->id }}</strong>
